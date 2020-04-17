@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import DeseoInput from './DeseoInput';
 import DeseoList from './DeseoList';
 
-const deseos = [
+const deseosIni = [
     { texto: 'viajar a la luna', cumplido: false },
     { texto: 'pagar la factura del movil', cumplido: true },
     { texto: 'Hacer el proyecto', cumplido: false },
@@ -12,11 +12,15 @@ const deseos = [
 
 ]
 
-const App = () => <div className='app'>
+const App = () =>{
+const [deseos, setDeseos] = useState(deseosIni);
+return( 
+<div className='app'>
     <h1>Mi lista de deseos</h1>
-    <DeseoInput />
+    <DeseoInput  nuevoDeseo = {deseo => setDeseos([...deseos, deseo])}/>
     <DeseoList deseos={deseos}/>
     <button className='deseo-clear'> Deseos Completados </button>
 </div>
-
+);
+};
 export default App;
