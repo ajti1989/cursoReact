@@ -1,3 +1,9 @@
+.app{
+    border: 1px solid black;
+    width: max-content;
+    padding: 5px 15px;
+}
+
 .deseo-input{
     border: none;
 }
@@ -13,4 +19,13 @@
 
 .deseo-list-item-done{
     text-decoration: line-through;
+}
+
+.deseo-clear{
+    
+    background-color: white;
+    padding: 7px;
+    margin: auto;
+    display: flex;
+    align-items: center;
 }

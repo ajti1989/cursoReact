@@ -28357,7 +28357,62 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"App/App.jsx":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/classNames/index.js":[function(require,module,exports) {
+var define;
+/*!
+  Copyright (c) 2017 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg) && arg.length) {
+				var inner = classNames.apply(null, arg);
+				if (inner) {
+					classes.push(inner);
+				}
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if (typeof module !== 'undefined' && module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
+		// register as 'classnames', consistent with npm package name
+		define('classnames', [], function () {
+			return classNames;
+		});
+	} else {
+		window.classNames = classNames;
+	}
+}());
+
+},{}],"App/App.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28368,6 +28423,8 @@ exports.default = void 0;
 var _react = _interopRequireDefault(require("react"));
 
 require("./App.css");
+
+var _classNames = _interopRequireDefault(require("classNames"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28398,24 +28455,30 @@ var App = function App() {
   }, deseos.map(function (_ref, i) {
     var texto = _ref.texto,
         cumplido = _ref.cumplido;
-    return /*#__PURE__*/_react.default.createElement("li", {
-      className: "deseo-list-item ".concat(cumplido ? 'deseo-list-item-done' : '')
-    }, /*#__PURE__*/_react.default.createElement("label", {
-      htmlFor: "deseo".concat(i)
-    }, /*#__PURE__*/_react.default.createElement("input", {
-      type: "checkbox",
-      checked: cumplido,
-      name: "",
-      id: "deseo".concat(i)
-    }), texto));
+    return (
+      /*#__PURE__*/
+      // si ha sido cumplido se aplica una clase de tachado
+      _react.default.createElement("li", {
+        className: (0, _classNames.default)('deseo-list-item', {
+          'deseo-list-item-done': cumplido
+        })
+      }, /*#__PURE__*/_react.default.createElement("label", {
+        htmlFor: "deseo".concat(i)
+      }, /*#__PURE__*/_react.default.createElement("input", {
+        type: "checkbox",
+        checked: cumplido,
+        name: "",
+        id: "deseo".concat(i)
+      }), texto))
+    );
   })), /*#__PURE__*/_react.default.createElement("button", {
     className: "deseo-clear"
-  }, " Completados "));
+  }, " Deseos Completados "));
 };
 
 var _default = App;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./App.css":"App/App.css"}],"App/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./App.css":"App/App.css","classNames":"../node_modules/classNames/index.js"}],"App/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28469,7 +28532,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50859" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51494" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

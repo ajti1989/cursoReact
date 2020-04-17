@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import classNames from 'classNames';
 
 const deseos = [
     { texto: 'viajar a la luna', cumplido: false },
@@ -15,7 +16,10 @@ const App = () => <div className='app'>
     </fieldset>
     <ul className = 'deseo-list'>
         {deseos.map(({ texto, cumplido }, i) => (
-            <li className={`deseo-list-item ${cumplido ? 'deseo-list-item-done' : ''}`}>
+            // si ha sido cumplido se aplica una clase de tachado
+            <li className={classNames(
+                'deseo-list-item',
+                {'deseo-list-item-done': cumplido})}>
                 <label htmlFor={`deseo${i}`}>
                     <input type="checkbox" checked={cumplido} name="" id={`deseo${i}`} />
                     {texto}
@@ -23,7 +27,7 @@ const App = () => <div className='app'>
             </li>
         ))}
     </ul>
-    <button className='deseo-clear'> Completados </button>
+    <button className='deseo-clear'> Deseos Completados </button>
 </div>
 
 export default App;
