@@ -19,7 +19,7 @@ return(
     <h1>Mi lista de deseos</h1>
     <DeseoInput  nuevoDeseo = {deseo => setDeseos([...deseos, deseo])}/>
     <DeseoList deseos={deseos}/>
-    <button className='deseo-clear'> Deseos Completados </button>
+    <button className='deseo-clear'> Archivar Completados </button>
 </div>
 );
 };

@@ -31387,7 +31387,7 @@ var App = function App() {
     deseos: deseos
   }), /*#__PURE__*/_react.default.createElement("button", {
     className: "deseo-clear"
-  }, " Deseos Completados "));
+  }, " Archivar Completados "));
 };
 
 var _default = App;
