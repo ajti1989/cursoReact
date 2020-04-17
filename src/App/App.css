@@ -1,0 +1,16 @@
+.deseo-input{
+    border: none;
+}
+
+.deseo-list{
+    padding: 0;
+    margin-left: 15px;
+}
+
+.deseo-list-item{
+    list-style: none;
+}
+
+.deseo-list-item-done{
+    text-decoration: line-through;
+}
